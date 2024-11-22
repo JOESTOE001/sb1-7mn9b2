@@ -1,0 +1,139 @@
+---
+const filters = {
+  Category: ['Architecture', 'Interior', 'Urban Design', 'Infrastructure'],
+  Contact: ['Europe', 'Asia', 'Americas', 'Middle East'],
+  About: ['Netherlands', 'China', 'USA', 'UAE']
+};
+---
+
+<nav class="navigation">
+  <div class="logo">
+    <a href="/">PORTFOLIO</a>
+  </div>
+  <div class="filters">
+    {Object.entries(filters).map(([category, options]) => (
+      <div class="filter-group">
+        <button class="filter-button">
+          {category}
+          <span class="material-icons-outlined arrow">expand_more</span>
+        </button>
+        <div class="dropdown-content">
+          {options.map(option => (
+            <a href={`#${option.toLowerCase().replace(' ', '-')}`}>{option}</a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="actions">
+    <button class="icon-button">
+      <span class="material-icons-outlined">search</span>
+    </button>
+    <button class="icon-button">
+      <span class="material-icons-outlined">menu</span>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
+  }
+
+  .logo a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+  }
+
+  .filters {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .filter-group {
+    position: relative;
+  }
+
+  .filter-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #666;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .filter-button:hover {
+    background-color: #f5f5f5;
+  }
+
+  .arrow {
+    font-size: 20px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 160px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+  }
+
+  .filter-group:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #666;
+    transition: background-color 0.2s;
+  }
+
+  .dropdown-content a:hover {
+    background: #f5f5f5;
+    color: #000;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: #666;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-button:hover {
+    background-color: #f5f5f5;
+    color: #000;
+  }
+</style>

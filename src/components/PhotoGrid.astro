@@ -1,0 +1,118 @@
+---
+interface Photo {
+  src: string;
+  alt: string;
+  title: string;
+}
+
+const photos: Photo[] = [
+  {
+    src: "/images/photo1.jpg",
+    alt: "Minimalist landscape",
+    title: "Serenity"
+  },
+  {
+    src: "/images/photo2.jpg",
+    alt: "Urban architecture",
+    title: "City Lines"
+  },
+  {
+    src: "/images/photo3.jpg",
+    alt: "Portrait photography",
+    title: "Light & Shadow"
+  },
+  {
+    src: "/images/photo4.jpg",
+    alt: "Street photography",
+    title: "Urban Life"
+  },
+  {
+    src: "/images/photo5.jpg",
+    alt: "Nature close-up",
+    title: "Natural Forms"
+  },
+  {
+    src: "/images/photo6.jpg",
+    alt: "Abstract composition",
+    title: "Abstractions"
+  }
+];
+---
+
+<div class="photo-grid">
+  {photos.map((photo) => (
+    <div class="photo-item">
+      <figure>
+        <img 
+          src={photo.src} 
+          alt={photo.alt} 
+          loading="lazy"
+        />
+        <figcaption>
+          <h3>{photo.title}</h3>
+        </figcaption>
+      </figure>
+    </div>
+  ))}
+</div>
+
+<style>
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .photo-item {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+  }
+
+  .photo-item:hover {
+    transform: translateY(-4px);
+  }
+
+  figure {
+    margin: ;
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .photo-item:hover img {
+    transform: scale(1.05);
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .photo-item:hover figcaption {
+    opacity: 1;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+</style>
